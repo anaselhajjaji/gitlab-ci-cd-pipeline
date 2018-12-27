@@ -4,11 +4,11 @@ RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
 WORKDIR /home/node/app
 
-COPY package*.json ./
+COPY nodejsapp/package*.json ./
 
 RUN npm install
 
-COPY . .
+COPY nodejsapp ./
 
 COPY --chown=node:node . .
 
