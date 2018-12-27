@@ -1,0 +1,16 @@
+{
+  "name": "nodejsapp",
+  "version": "1.0.0",
+  "description": "nodejs image demo",
+  "author": "Anas EL HAJJAJI <elhajjaji.anas@gmail.com>",
+  "license": "MIT",
+  "main": "app.js",
+  "keywords": [
+    "nodejs",
+    "bootstrap",
+    "express"
+  ],
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
