@@ -1,3 +1,5 @@
+The file .gitlab-ci.yml should be present in gitlab repository root.
+
 The command to register the runner :
 
 ```
