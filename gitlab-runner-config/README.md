@@ -1,7 +1,7 @@
 The command to register the runner :
 
 ```
-docker run --rm -t -i -v .:/etc/gitlab-runner --name gitlab-runner gitlab/gitlab-runner register \
+docker run --rm -t -i -v $PATH_TO_CONFIH:/etc/gitlab-runner --name gitlab-runner gitlab/gitlab-runner register \
   --non-interactive \
   --executor "docker" \
   --docker-image alpine:3 \
@@ -19,7 +19,7 @@ Then start the runner :
 docker run -d \
  --name gitlab-runner \
  --restart always \
- -v .:/etc/gitlab-runner \
+ -v $PATH_TO_CONFIH:/etc/gitlab-runner \
  -v /var/run/docker.sock:/var/run/docker.sock \
  gitlab/gitlab-runner:latest
  ```
