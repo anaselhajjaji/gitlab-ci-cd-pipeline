@@ -1,6 +1,6 @@
 variables:
-  CONTAINER_IMAGE: registry.gitlab.com/$CI_PROJECT_PATH
-  DOCKER_HOST: tcp://docker:2375
+  CONTAINER_IMAGE: docker.io/anaselhajjaji/nodejsapp
+  DOCKER_HOST: tcp://192.168.0.23:2375
 stages:
   - test
   - build
@@ -18,7 +18,7 @@ build:
     - docker:dind
   script:
     - docker image build -t $CONTAINER_IMAGE:$CI_BUILD_REF -t $CONTAINER_IMAGE:latest .
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - docker image push $CONTAINER_IMAGE:latest
     - docker image push $CONTAINER_IMAGE:$CI_BUILD_REF
   only:

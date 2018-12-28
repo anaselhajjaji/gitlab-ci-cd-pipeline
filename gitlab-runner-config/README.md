@@ -1,3 +1,5 @@
+The file .gitlab-ci.yml should be present in gitlab repository root.
+
 The command to register the runner :
 
 ```
@@ -8,4 +10,28 @@ Then start the runner :
 
 ```
 docker run -d --name gitlab-runner --restart always -v $CONFIG_PATH:/etc/gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock gitlab/gitlab-runner:latest
+```
+
+To publish to docker hub, set the following variables :
+
+```
+CI_REGISTRY_USER=username
+CI_REGISTRY_PASSWORD=********
+CI_REGISTRY=index.docker.io
+```
+
+Docker host should be exposed, on centos 7:
+
+Create the file : /etc/systemd/system/docker.service.d/docker-external.conf
+With content :
+```
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
+```
+
+Then restart docker:
+```
+systemctl daemon-reload
+systemctl restart docker
 ```
