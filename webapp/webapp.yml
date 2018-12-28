@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  www:
+    image: docker.io/anaselhajjaji/nodejsapp
+    networks:
+      - proxy
+    ports:
+      - "8085:8085"
+    deploy:
+      mode: replicated
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+
+networks:
+  proxy:
+    name: bridge
+    external: true
