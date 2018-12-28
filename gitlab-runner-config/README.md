@@ -5,7 +5,7 @@ docker run --rm -t -i -v /path/to/config:/etc/gitlab-runner --name gitlab-runner
   --non-interactive \
   --executor "docker" \
   --docker-image alpine:3 \
-  --url "http://http://192.168.43.41:8080/ci" \
+  --url "http://192.168.43.41:8080/ci" \
   --registration-token "_3zNd3Uve5CRYXcZn6P4" \
   --description "docker-runner" \
   --tag-list "docker,aws" \
