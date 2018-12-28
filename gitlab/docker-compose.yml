@@ -19,7 +19,7 @@ gitlab:
       redis['enable'] = false
       gitlab_rails['redis_host'] = 'redis'
       gitlab_rails['redis_port'] = '6379'
-      external_url 'gitlab.local'
+      external_url 'http://gitlab.local'
       gitlab_rails['gitlab_shell_ssh_port'] = 30022
   ports:
     # both ports must match the port from external_url above
