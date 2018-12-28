@@ -16,9 +16,8 @@ docker run --rm -t -i -v /path/to/config:/etc/gitlab-runner --name gitlab-runner
 Then start the runner :
 
 ```
-docker run -d --name gitlab-runner \
- --restart always \
- -v $PATH_TO_CONFIH:/etc/gitlab-runner \
- -v /var/run/docker.sock:/var/run/docker.sock \
- gitlab/gitlab-runner:latest
+ docker run -d --name gitlab-runner --restart always \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v /srv/gitlab-runner/config:/etc/gitlab-runner:Z \
+  gitlab/gitlab-runner:latest
  ```
