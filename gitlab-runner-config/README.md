@@ -1,3 +1,6 @@
+The command :
+
+'''
 CONFIG_FOLDER=.
 
 docker run — rm -t -i \
@@ -13,3 +16,4 @@ docker run — rm -t -i \
    --run-untagged \
    —-locked="false" \
    --docker-privileged
+'''
