@@ -1,0 +1,33 @@
+variables:
+  CONTAINER_IMAGE: registry.gitlab.com/$CI_PROJECT_PATH
+  DOCKER_HOST: tcp://docker:2375
+stages:
+  - test
+  - build
+  - deploy
+test:
+  stage: test
+  image: node:8.12.0-alpine
+  script:
+    - npm i
+    - npm test
+build:
+  stage: build
+  image: docker:stable
+  services:
+    - docker:dind
+  script:
+    - docker image build -t $CONTAINER_IMAGE:$CI_BUILD_REF -t $CONTAINER_IMAGE:latest .
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+    - docker image push $CONTAINER_IMAGE:latest
+    - docker image push $CONTAINER_IMAGE:$CI_BUILD_REF
+  only:
+    - master
+deploy:
+  stage: deploy
+  image: alpine
+  script:
+    - apk add --update curl
+    - curl -XPOST $WWW_WEBHOOK
+  only:
+    - master
