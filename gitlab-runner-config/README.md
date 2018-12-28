@@ -12,3 +12,14 @@ docker run --rm -t -i -v .:/etc/gitlab-runner --name gitlab-runner gitlab/gitlab
   --run-untagged \
   --locked="false"
 ```
+
+Then start the runner :
+
+```
+docker run -d \
+ --name gitlab-runner \
+ --restart always \
+ -v .:/etc/gitlab-runner \
+ -v /var/run/docker.sock:/var/run/docker.sock \
+ gitlab/gitlab-runner:latest
+ ```
