@@ -1,5 +1,5 @@
 variables:
-  CONTAINER_IMAGE: anaselhajjaji/nodejsapp
+  CONTAINER_IMAGE: index.docker.io/anaselhajjaji/nodejsapp
   DOCKER_HOST: tcp://docker:2375
 stages:
   - test
