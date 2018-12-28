@@ -1,7 +1,7 @@
 The command to register the runner :
 
 ```
-docker run --rm -t -i -v /home/open/workspace/ci-cd-pipeline/gitlab-runner-config:/etc/gitlab-runner --name gitlab-runner gitlab/gitlab-runner register \
+docker run --rm -t -i -v $PATH_TO_CONFIG:/etc/gitlab-runner --name gitlab-runner gitlab/gitlab-runner register \
    --non-interactive \
    --executor "docker" \
    --docker-image docker:stable \
