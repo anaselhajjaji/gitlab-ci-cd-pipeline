@@ -5,3 +5,10 @@ services:
     build: ./nodejsapp
     ports:
       - 8085:8085
+      
+portainer:
+  image: portainer/portainer
+  container_name: "portainer-app"
+  command: --no-auth -H unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
