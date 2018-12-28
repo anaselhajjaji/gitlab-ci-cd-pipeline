@@ -1,16 +1,7 @@
 The command to register the runner :
 
 ```
-docker run --rm -t -i -v /path/to/config:/etc/gitlab-runner --name gitlab-runner gitlab/gitlab-runner register \
-  --non-interactive \
-  --executor "docker" \
-  --docker-image alpine:3 \
-  --url "http://192.168.43.41:8080/ci" \
-  --registration-token "_3zNd3Uve5CRYXcZn6P4" \
-  --description "docker-runner" \
-  --tag-list "docker,aws" \
-  --run-untagged \
-  --locked="false"
+docker run --rm -t -i --name gitlab-runner gitlab/gitlab-runner register --non-interactive --executor "docker" --docker-image alpine:3 --url "http://192.168.43.41:8080/ci" --registration-token "_3zNd3Uve5CRYXcZn6P4" --description "docker-runner" --tag-list "docker,aws" --run-untagged --locked="false"
 ```
 
 Then start the runner :
