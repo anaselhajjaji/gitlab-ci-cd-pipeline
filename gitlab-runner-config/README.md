@@ -17,3 +17,19 @@ CI_REGISTRY_USER=username
 CI_REGISTRY_PASSWORD=********
 CI_REGISTRY=index.docker.io
 ```
+
+Docker host should be exposed, on centos 7:
+
+Create the file : /etc/systemd/system/docker.service.d/docker-external.conf
+With content :
+```
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
+```
+
+Then restart docker:
+```
+systemctl daemon-reload
+systemctl restart docker
+```
