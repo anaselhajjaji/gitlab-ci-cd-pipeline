@@ -16,5 +16,4 @@ To publish to docker hub, set the following variables :
 CI_REGISTRY_USER=username
 CI_REGISTRY_PASSWORD=********
 CI_REGISTRY=index.docker.io
-CI_REGISTRY_IMAGE=index.docker.io/username/nodejsapp
 ```
