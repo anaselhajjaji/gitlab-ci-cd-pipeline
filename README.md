@@ -10,6 +10,6 @@
 
 (3) The gitlab-runner invoke the webhook defined in Portainer (Service section, don't forget to copy the URL to Gitlab CI variables)
 
-(4) Once the webhook received, Portainer deploys the new version of the service. Portainer communicate with the docker engine to do so
+(4) Once the webhook received, Portainer deploys the new version of the service (downloads the latest image from the docker hub then deploys it). Portainer communicate with the docker engine to do so
 
 (5) The new version of the webapp is available for the browser
