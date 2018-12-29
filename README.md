@@ -8,7 +8,7 @@
 - build and push the image to docker hub: https://cloud.docker.com/repository/docker/anaselhajjaji/nodejsapp
 - Deploy the the new image to docker
 
-(3) The gitlab-runner invoke the webhook defined in Portainer
+(3) The gitlab-runner invoke the webhook defined in Portainer (Service section, don't forget to copy the URL to Gitlab CI variables)
 
 (4) Once the webhook received, Portainer deploys the new version of the service. Portainer communicate with the docker engine to do so
 
