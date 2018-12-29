@@ -10,6 +10,7 @@ test:
   image: node:8.12.0-alpine
   script:
     - npm i
+    - npm install -g mocha
     - npm test
 build:
   stage: build
