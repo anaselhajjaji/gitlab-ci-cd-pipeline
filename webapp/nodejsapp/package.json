@@ -12,5 +12,8 @@
   ],
   "dependencies": {
     "express": "^4.16.4"
+  },
+  "scripts": {
+    "test": "mocha"
   }
 }
