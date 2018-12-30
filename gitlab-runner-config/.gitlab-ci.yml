@@ -2,7 +2,6 @@ variables:
   CONTAINER_IMAGE: anaselhajjaji/nodejsapp
   DOCKER_HOST: tcp://192.168.0.23:2375
   SONAR_HOST: http://localhost:9000
-  SONAR_TOKEN: e0f6a1c22cbf526b8b6c1e4c77091071041cfd0c
 stages:
   - test
   - build
@@ -13,8 +12,8 @@ test:
   script:
     - npm i
     # Analyse code using sonar scanner
-    #- npm install -g sonarqube-scanner
-    #- sonar-scanner -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_TOKEN
+    - npm install -g sonarqube-scanner
+    - sonar-scanner -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_TOKEN
     # Perform Unit Tests with mocha
     - npm install -g mocha
     - npm test
