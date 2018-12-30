@@ -4,7 +4,8 @@
 (1) The developer makes changes in the web application then pushes those changes to master
 
 (2) Gitlab communicates with the gitlab-runner that performes the actions defined in .gitlab-ci.yml, in the example : 
-- Test with npm test 
+- Static analysis with SonarQube
+- Test with npm test
 - build and push the image to docker hub: https://cloud.docker.com/repository/docker/anaselhajjaji/nodejsapp
 - Deploy the the new image to docker
 
