@@ -64,9 +64,7 @@ services:
     expose:
       - 9000
     ports:
-      - "127.0.0.1:9000:9000"
-    networks:
-      - sonarnet
+      - "9000:9000"
     environment:
       - SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar
       - SONARQUBE_JDBC_USERNAME=sonar
@@ -86,11 +84,6 @@ services:
     volumes:
       - postgresql:/var/lib/postgresql
       - postgresql_data:/var/lib/postgresql/data
-
-networks:
-  # for sonarqube
-  sonarnet:
-    driver: bridge
     
 volumes:
   # for portainer
