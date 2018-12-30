@@ -1,5 +1,5 @@
 # CI-CD Pipeline using Gitlab CI
-![Explanations](https://github.com/anaselhajjaji/ci-cd-pipeline/blob/master/explanations.jpg)
+![Explanations](https://github.com/anaselhajjaji/ci-cd-pipeline/blob/master/presentation.jpg)
 
 (1) The developer makes changes in the web application then pushes those changes to master
 
