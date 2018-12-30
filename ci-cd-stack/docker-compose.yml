@@ -53,7 +53,7 @@ services:
     command: --no-auth -H unix:///var/run/docker.sock
     restart: always
     ports:
-      - 9000:9000
+      - 9005:9005
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
@@ -61,12 +61,10 @@ services:
   # sonarqube
   sonarqube:
     image: sonarqube
-    expose:
-      - 9000
     ports:
       - "9000:9000"
     environment:
-      - SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar
+      - SONARQUBE_JDBC_URL=jdbc:postgresql://db:5433/sonar
       - SONARQUBE_JDBC_USERNAME=sonar
       - SONARQUBE_JDBC_PASSWORD=sonar
     volumes:
@@ -76,6 +74,8 @@ services:
       - sonarqube_bundled-plugins:/opt/sonarqube/lib/bundled-plugins
   db:
     image: postgres
+    ports:
+      -"5433:5432"
     environment:
       - POSTGRES_USER=sonar
       - POSTGRES_PASSWORD=sonar
