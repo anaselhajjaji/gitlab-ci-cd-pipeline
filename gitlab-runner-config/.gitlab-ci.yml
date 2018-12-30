@@ -13,8 +13,8 @@ test:
   script:
     - npm i
     # Analyse code using sonar scanner
-    - npm install -g sonarqube-scanner
-    - sonar-scanner -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_TOKEN
+    #- npm install -g sonarqube-scanner
+    #- sonar-scanner -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_TOKEN
     # Perform Unit Tests with mocha
     - npm install -g mocha
     - npm test
