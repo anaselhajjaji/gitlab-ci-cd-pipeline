@@ -12,7 +12,7 @@ test:
     - npm i
     # Analyse code using sonar scanner
     - npm install -g sonarqube-scanner
-    - sonar-scanner -Dsonar.host.url=http://localhost:9000 -Dsonar.login=019d1e2e04e
+    - sonar-scanner -Dsonar.host.url=http://localhost:9000 -Dsonar.login=e0f6a1c22cbf526b8b6c1e4c77091071041cfd0c
     # Perform Unit Tests with mocha
     - npm install -g mocha
     - npm test
