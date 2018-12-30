@@ -18,6 +18,7 @@ To publish to docker hub, set the following variables :
 CI_REGISTRY_USER=username
 CI_REGISTRY_PASSWORD=********
 CI_REGISTRY=docker.io
+SONAR_TOKEN=token_generated_in_sonarqube
 ```
 
 Docker host should be exposed, on centos 7:
