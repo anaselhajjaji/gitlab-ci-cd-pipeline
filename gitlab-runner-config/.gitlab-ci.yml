@@ -1,7 +1,7 @@
 variables:
   CONTAINER_IMAGE: anaselhajjaji/nodejsapp
   DOCKER_HOST: tcp://192.168.0.23:2375
-  SONAR_HOST: http://localhost:9000
+  SONAR_HOST: http://192.168.0.23:8091
 stages:
   - test
   - build
