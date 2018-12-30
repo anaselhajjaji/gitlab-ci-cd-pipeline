@@ -57,7 +57,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
 
-  # sonarqube
+  # sonarqube stack to be expected later (my machine cannot handle all the stack)
   #sonarqube:
   #  image: sonarqube
   #  ports:
@@ -86,17 +86,17 @@ volumes:
   # for portainer
   portainer_data:
   # for sonarqube
-  sonarqube_conf:
-  sonarqube_data:
-  sonarqube_extensions:
-  sonarqube_bundled-plugins:
-  postgresql:
-  postgresql_data:
+  #sonarqube_conf:
+  #sonarqube_data:
+  #sonarqube_extensions:
+  #sonarqube_bundled-plugins:
+  #postgresql:
+  #postgresql_data:
 
 networks:
-  sonarqubenet:
-    name: bridge
-    external: true
+  #sonarqubenet:
+  #  name: bridge
+  #  external: true
   gitlabnet:
     name: bridge
     external: true
