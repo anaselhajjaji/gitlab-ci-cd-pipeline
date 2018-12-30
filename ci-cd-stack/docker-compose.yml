@@ -1,92 +1,91 @@
 ---
+services:
 # Gitlab
-gitlab:
-  image: 'gitlab/gitlab-ce:9.1.0-ce.0'
-  restart: always
-  hostname: 'localhost'
-  links:
-    - postgresql:postgresql
-    - redis:redis
-  environment:
-    GITLAB_OMNIBUS_CONFIG: |
-      postgresql['enable'] = false
-      gitlab_rails['db_username'] = "gitlab"
-      gitlab_rails['db_password'] = "gitlab"
-      gitlab_rails['db_host'] = "postgresql"
-      gitlab_rails['db_port'] = "5432"
-      gitlab_rails['db_database'] = "gitlabhq_production"
-      gitlab_rails['db_adapter'] = 'postgresql'
-      gitlab_rails['db_encoding'] = 'utf8'
-      redis['enable'] = false
-      gitlab_rails['redis_host'] = 'redis'
-      gitlab_rails['redis_port'] = '6379'
-      external_url 'http://192.168.0.23:30080'
-      gitlab_rails['gitlab_shell_ssh_port'] = 30022
-  ports:
-    # both ports must match the port from external_url above
-    - "30080:30080"
-    # the mapped port must match ssh_port specified above.
-    - "30022:22"
-# the following are hints on what volumes to mount if you want to persist data
-#  volumes:
-#    - data/gitlab/config:/etc/gitlab:rw
-#    - data/gitlab/logs:/var/log/gitlab:rw
-#    - data/gitlab/data:/var/opt/gitlab:rw
-
-postgresql:
-  restart: always
-  image: postgres:9.6.2-alpine
-  environment:
-    - POSTGRES_USER=gitlab
-    - POSTGRES_PASSWORD=gitlab
-    - POSTGRES_DB=gitlabhq_production
-# the following are hints on what volumes to mount if you want to persist data
-#  volumes:
-#    - data/postgresql:/var/lib/postgresql:rw
-
-redis:
-  restart: always
-  image: redis:3.0.7-alpine
-
-# Portainer
-portainer:
-    image: portainer/portainer
-    command: --no-auth -H unix:///var/run/docker.sock
+  gitlab:
+    image: 'gitlab/gitlab-ce:9.1.0-ce.0'
     restart: always
+    hostname: 'localhost'
+    links:
+      - postgresql:postgresql
+      - redis:redis
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        postgresql['enable'] = false
+        gitlab_rails['db_username'] = "gitlab"
+        gitlab_rails['db_password'] = "gitlab"
+        gitlab_rails['db_host'] = "postgresql"
+        gitlab_rails['db_port'] = "5432"
+        gitlab_rails['db_database'] = "gitlabhq_production"
+        gitlab_rails['db_adapter'] = 'postgresql'
+        gitlab_rails['db_encoding'] = 'utf8'
+        redis['enable'] = false
+        gitlab_rails['redis_host'] = 'redis'
+        gitlab_rails['redis_port'] = '6379'
+        external_url 'http://192.168.0.23:30080'
+        gitlab_rails['gitlab_shell_ssh_port'] = 30022
     ports:
-      - 9000:9000
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
+      # both ports must match the port from external_url above
+      - "30080:30080"
+      # the mapped port must match ssh_port specified above.
+      - "30022:22"
+  # the following are hints on what volumes to mount if you want to persist data
+  #  volumes:
+  #    - data/gitlab/config:/etc/gitlab:rw
+  #    - data/gitlab/logs:/var/log/gitlab:rw
+  #    - data/gitlab/data:/var/opt/gitlab:rw
+  postgresql:
+    restart: always
+    image: postgres:9.6.2-alpine
+    environment:
+      - POSTGRES_USER=gitlab
+      - POSTGRES_PASSWORD=gitlab
+      - POSTGRES_DB=gitlabhq_production
+    # the following are hints on what volumes to mount if you want to persist data
+    #  volumes:
+    #    - data/postgresql:/var/lib/postgresql:rw
+    redis:
+      restart: always
+      image: redis:3.0.7-alpine
 
-# sonarqube
-sonarqube:
-    image: sonarqube
-    expose:
-      - 9000
-    ports:
-      - "127.0.0.1:9000:9000"
-    networks:
-      - sonarnet
-    environment:
-      - SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar
-      - SONARQUBE_JDBC_USERNAME=sonar
-      - SONARQUBE_JDBC_PASSWORD=sonar
-    volumes:
-      - sonarqube_conf:/opt/sonarqube/conf
-      - sonarqube_data:/opt/sonarqube/data
-      - sonarqube_extensions:/opt/sonarqube/extensions
-      - sonarqube_bundled-plugins:/opt/sonarqube/lib/bundled-plugins
-db:
-    image: postgres
-    networks:
-      - sonarnet
-    environment:
-      - POSTGRES_USER=sonar
-      - POSTGRES_PASSWORD=sonar
-    volumes:
-      - postgresql:/var/lib/postgresql
-      - postgresql_data:/var/lib/postgresql/data
+    # Portainer
+    portainer:
+      image: portainer/portainer
+      command: --no-auth -H unix:///var/run/docker.sock
+      restart: always
+      ports:
+        - 9000:9000
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - portainer_data:/data
+
+    # sonarqube
+    sonarqube:
+      image: sonarqube
+      expose:
+        - 9000
+      ports:
+        - "127.0.0.1:9000:9000"
+      networks:
+        - sonarnet
+      environment:
+        - SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar
+        - SONARQUBE_JDBC_USERNAME=sonar
+        - SONARQUBE_JDBC_PASSWORD=sonar
+      volumes:
+        - sonarqube_conf:/opt/sonarqube/conf
+        - sonarqube_data:/opt/sonarqube/data
+        - sonarqube_extensions:/opt/sonarqube/extensions
+        - sonarqube_bundled-plugins:/opt/sonarqube/lib/bundled-plugins
+    db:
+      image: postgres
+      networks:
+        - sonarnet
+      environment:
+        - POSTGRES_USER=sonar
+        - POSTGRES_PASSWORD=sonar
+      volumes:
+        - postgresql:/var/lib/postgresql
+        - postgresql_data:/var/lib/postgresql/data
 
 networks:
   # for sonarqube
