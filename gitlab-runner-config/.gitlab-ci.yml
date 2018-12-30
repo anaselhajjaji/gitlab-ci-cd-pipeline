@@ -3,18 +3,23 @@ variables:
   DOCKER_HOST: tcp://192.168.0.23:2375
   SONAR_HOST: http://192.168.0.23:8091
 stages:
+  - analysis
   - test
   - build
   - deploy
+analysis:
+  stage: analysis
+  image: ciricihq/gitlab-sonar-scanner
+  variables:
+    SONAR_URL: $SONAR_HOST
+    SONAR_ANALYSIS_MODE: publish
+  script:
+  - gitlab-sonar-scanner -Dsonar.login=$SONAR_TOKEN
 test:
   stage: test
   image: node:8.12.0-alpine
   script:
     - npm i
-    # Analyse code using sonar scanner
-    - npm install -g sonarqube-scanner
-    - sonar-scanner -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_TOKEN
-    # Perform Unit Tests with mocha
     - npm install -g mocha
     - npm test
 build:
