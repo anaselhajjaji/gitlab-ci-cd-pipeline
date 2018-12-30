@@ -3,11 +3,7 @@ version: '3'
 services:
   gitlab:
     image: 'gitlab/gitlab-ce:9.1.0-ce.0'
-    restart: always
     hostname: 'localhost'
-    links:
-      - postgresql:postgresql
-      - redis:redis
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         postgresql['enable'] = false
@@ -34,7 +30,6 @@ services:
   #    - data/gitlab/logs:/var/log/gitlab:rw
   #    - data/gitlab/data:/var/opt/gitlab:rw
   postgresql:
-    restart: always
     image: postgres:9.6.2-alpine
     environment:
       - POSTGRES_USER=gitlab
@@ -44,14 +39,12 @@ services:
     #  volumes:
     #    - data/postgresql:/var/lib/postgresql:rw
   redis:
-    restart: always
     image: redis:3.0.7-alpine
 
   # Portainer
   portainer:
     image: portainer/portainer
     command: --no-auth -H unix:///var/run/docker.sock
-    restart: always
     ports:
       - 9005:9000
     volumes:
