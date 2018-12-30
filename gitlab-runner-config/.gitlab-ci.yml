@@ -1,5 +1,5 @@
 variables:
-  CONTAINER_IMAGE: docker.io/anaselhajjaji/nodejsapp
+  CONTAINER_IMAGE: anaselhajjaji/nodejsapp
   DOCKER_HOST: tcp://192.168.0.23:2375
 stages:
   - test
@@ -10,6 +10,10 @@ test:
   image: node:8.12.0-alpine
   script:
     - npm i
+    # Analyse code using sonar scanner
+    - npm install -g sonarqube-scanner
+    - sonar-scanner -Dsonar.host.url=http://localhost:9000 -Dsonar.login=019d1e2e04e
+    # Perform Unit Tests with mocha
     - npm install -g mocha
     - npm test
 build:
