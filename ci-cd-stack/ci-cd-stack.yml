@@ -1,12 +1,4 @@
-version: '3'
-
-networks:
-  sonarqubenet:
-    name: bridge
-    external: true
-  gitlabnet:
-    name: bridge
-    external: true
+version: "3.7"
 
 services:
   gitlab:
@@ -103,3 +95,11 @@ volumes:
   sonarqube_bundled-plugins:
   postgresql:
   postgresql_data:
+
+networks:
+  sonarqubenet:
+    name: bridge
+    external: true
+  gitlabnet:
+    name: bridge
+    external: true
