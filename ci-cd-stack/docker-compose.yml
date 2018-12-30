@@ -1,6 +1,6 @@
----
+version: '3'
+
 services:
-# Gitlab
   gitlab:
     image: 'gitlab/gitlab-ce:9.1.0-ce.0'
     restart: always
@@ -43,49 +43,49 @@ services:
     # the following are hints on what volumes to mount if you want to persist data
     #  volumes:
     #    - data/postgresql:/var/lib/postgresql:rw
-    redis:
-      restart: always
-      image: redis:3.0.7-alpine
+  redis:
+    restart: always
+    image: redis:3.0.7-alpine
 
-    # Portainer
-    portainer:
-      image: portainer/portainer
-      command: --no-auth -H unix:///var/run/docker.sock
-      restart: always
-      ports:
-        - 9000:9000
-      volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
-        - portainer_data:/data
+  # Portainer
+  portainer:
+    image: portainer/portainer
+    command: --no-auth -H unix:///var/run/docker.sock
+    restart: always
+    ports:
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
 
-    # sonarqube
-    sonarqube:
-      image: sonarqube
-      expose:
-        - 9000
-      ports:
-        - "127.0.0.1:9000:9000"
-      networks:
-        - sonarnet
-      environment:
-        - SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar
-        - SONARQUBE_JDBC_USERNAME=sonar
-        - SONARQUBE_JDBC_PASSWORD=sonar
-      volumes:
-        - sonarqube_conf:/opt/sonarqube/conf
-        - sonarqube_data:/opt/sonarqube/data
-        - sonarqube_extensions:/opt/sonarqube/extensions
-        - sonarqube_bundled-plugins:/opt/sonarqube/lib/bundled-plugins
-    db:
-      image: postgres
-      networks:
-        - sonarnet
-      environment:
-        - POSTGRES_USER=sonar
-        - POSTGRES_PASSWORD=sonar
-      volumes:
-        - postgresql:/var/lib/postgresql
-        - postgresql_data:/var/lib/postgresql/data
+  # sonarqube
+  sonarqube:
+    image: sonarqube
+    expose:
+      - 9000
+    ports:
+      - "127.0.0.1:9000:9000"
+    networks:
+      - sonarnet
+    environment:
+      - SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar
+      - SONARQUBE_JDBC_USERNAME=sonar
+      - SONARQUBE_JDBC_PASSWORD=sonar
+    volumes:
+      - sonarqube_conf:/opt/sonarqube/conf
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_bundled-plugins:/opt/sonarqube/lib/bundled-plugins
+  db:
+    image: postgres
+    networks:
+      - sonarnet
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+    volumes:
+      - postgresql:/var/lib/postgresql
+      - postgresql_data:/var/lib/postgresql/data
 
 networks:
   # for sonarqube
