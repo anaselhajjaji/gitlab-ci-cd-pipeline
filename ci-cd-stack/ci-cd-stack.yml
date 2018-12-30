@@ -35,9 +35,9 @@ services:
       - POSTGRES_USER=postgresql_user
       - POSTGRES_PASSWORD=postgresql_pwd
       - POSTGRES_DB=gitlabhq_production
-    volumes:
-      - postgresql:/var/lib/postgresql
-      - postgresql_data:/var/lib/postgresql/data
+    # volumes:
+    #  - postgresql:/var/lib/postgresql
+    #  - postgresql_data:/var/lib/postgresql/data
   redis:
     image: redis:3.0.7-alpine
 
