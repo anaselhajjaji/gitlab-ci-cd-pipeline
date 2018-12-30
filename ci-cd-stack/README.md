@@ -1,5 +1,5 @@
-Can be deployed using docker-compose or in swarm mode:
+Depoloyment command:
 
 ```
-docker stack deploy -c docker-compose.yml ci-cd-stack
+docker stack deploy -c ci-cd-stack.yml ci-cd-stack
 ```
