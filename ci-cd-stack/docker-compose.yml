@@ -86,12 +86,12 @@ volumes:
   # for portainer
   portainer_data:
   # for sonarqube
-  #sonarqube_conf:
-  #sonarqube_data:
-  #sonarqube_extensions:
-  #sonarqube_bundled-plugins:
-  #postgresql:
-  #postgresql_data:
+  sonarqube_conf:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_bundled-plugins:
+  postgresql:
+  postgresql_data:
 
 networks:
   sonarqubenet:
