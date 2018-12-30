@@ -53,7 +53,7 @@ services:
     command: --no-auth -H unix:///var/run/docker.sock
     restart: always
     ports:
-      - 9005:9005
+      - 9005:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
