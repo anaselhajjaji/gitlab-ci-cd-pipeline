@@ -1,5 +1,5 @@
-Depoloyment command:
+docker-compose is used for this stack:
 
 ```
-docker stack deploy -c ci-cd-stack.yml ci-cd-stack
+docker-compose up -d
 ```
