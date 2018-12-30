@@ -2,9 +2,11 @@ version: '3'
 
 networks:
   sonarqubenet:
-    driver: bridge
+    name: bridge
+    external: true
   gitlabnet:
-    driver: bridge
+    name: bridge
+    external: true
 
 services:
   gitlab:
