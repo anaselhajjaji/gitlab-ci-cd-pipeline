@@ -1,4 +1,5 @@
 ---
+# Gitlab
 gitlab:
   image: 'gitlab/gitlab-ce:9.1.0-ce.0'
   restart: always
@@ -46,3 +47,17 @@ postgresql:
 redis:
   restart: always
   image: redis:3.0.7-alpine
+
+# Portainer
+portainer:
+    image: portainer/portainer
+    command: --no-auth -H unix:///var/run/docker.sock
+    restart: always
+    ports:
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+volumes:
+  portainer_data:
