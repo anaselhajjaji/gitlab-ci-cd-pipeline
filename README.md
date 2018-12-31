@@ -1,4 +1,4 @@
-# CI-CD Pipeline using Gitlab CI
+# CI-CD Pipeline Solution Overview
 ![Explanations](https://github.com/anaselhajjaji/ci-cd-pipeline/blob/master/solution_impl.jpg)
 
 (1) The developer makes changes in the web application then pushes those changes to master
@@ -15,6 +15,7 @@
 
 (5) The new version of the webapp is available for the browser
 
+# Implementation
 ## CI CD Stack
 docker-compose is used for this stack:
 ```
