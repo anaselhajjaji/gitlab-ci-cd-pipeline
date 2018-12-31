@@ -14,3 +14,9 @@
 (4) Once the webhook received, Portainer deploys the new version of the service (downloads the latest image from the docker hub then deploys it). Portainer communicate with the docker engine to do so
 
 (5) The new version of the webapp is available for the browser
+
+## CI CD Stack
+docker-compose is used for this stack:
+```
+docker-compose up -d
+```
