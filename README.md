@@ -61,3 +61,7 @@ systemctl daemon-reload
 systemctl restart docker
 ```
 ## WebApp Installation
+To deploy the webapp in swarm:
+```
+docker stack deploy -c webapp.yml webapp
+```
