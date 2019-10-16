@@ -1,5 +1,5 @@
 # CI-CD Pipeline Solution Overview
-![Explanations](https://github.com/anaselhajjaji/ci-cd-pipeline/blob/master/solution_impl.jpg)
+![Explanations](solution_impl.jpg)
 
 (1) The developer makes changes in the web application then pushes those changes to master
 
